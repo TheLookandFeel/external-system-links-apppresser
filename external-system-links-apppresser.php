@@ -3,7 +3,7 @@
 /**
  * Plugin Name: External System Links for AppPresser
  * Description: Filters external links in post content to give them 'external system' classes, to have AppPresser handle them as links opening in the system browser. The added classes and allowed (non-external) URLs are filterable.
- * Author: The Look And Feel
+ * Author: The Look and Feel
  * Author URI: http://thelookandfeel.no
  */
 
