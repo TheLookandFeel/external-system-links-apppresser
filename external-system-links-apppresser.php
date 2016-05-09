@@ -14,7 +14,7 @@ function tlaf_appp_esl_content_filter( $content ) {
 	$applied_classes = apply_filters( 'tlaf_appp_esl_applied_classes', array( 'external', 'system' ) );
 
 	$dom = new DOMDocument;
-	$dom->loadHTML( $content );
+	$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
 
 	/** @var DOMElement $node */
 	foreach ( $dom->getElementsByTagName( 'a' ) as $node ) {
