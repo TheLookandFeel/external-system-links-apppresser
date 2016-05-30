@@ -1,0 +1,24 @@
+{
+  "name": "thelookandfeel/external-system-links-apppresser",
+  "description": "Filters external links in post content to give them 'external system' classes, to have AppPresser handle them as links opening in the system browser. The added classes and allowed (non-external) URLs are filterable.",
+  "type": "wordpress-plugin",
+  "authors": [
+    {
+      "name": "Coen Jacobs",
+      "email": "coen@thelookandfeel.no"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "TheLookAndFeel\\ExternalSystemLinksAppPresser\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "wpupdatephp/wp-update-php": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.3"
+  }
+}
