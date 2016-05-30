@@ -61,7 +61,7 @@ class Filter
      */
     public function addClasses(DOMElement $node)
     {
-        $classes = explode(' ', $node->getAttribute('class'));
+        $classes = array_filter(explode(' ', $node->getAttribute('class')));
         $classes = implode(' ', array_unique(array_merge($classes, $this->classes)));
         $node->setAttribute('class', $classes);
 
