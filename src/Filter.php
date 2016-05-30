@@ -21,7 +21,7 @@ class Filter
     public function contentFilter($content)
     {
         $dom = new DOMDocument;
-        $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+        $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
         foreach ($dom->getElementsByTagName('a') as $node) {
             $this->handleElement($node);
