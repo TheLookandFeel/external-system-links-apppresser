@@ -2,40 +2,23 @@
 
 /**
  * Plugin Name: External System Links for AppPresser
- * Description: Filters external links in post content to give them 'external system' classes, to have AppPresser handle them as links opening in the system browser. The added classes and allowed (non-external) URLs are filterable.
+ * Description: Filters external links in post content to give them 'external system' classes, to have AppPresser handle them as links opening in the system browser.
  * Author: The Look and Feel
  * Author URI: http://thelookandfeel.no
  */
 
-add_filter( 'the_content', 'tlaf_appp_esl_content_filter', 10, 1 );
+if ( ! file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    wp_die(__('Autoloader for External System Links for AppPresser could not be loaded.',
+        'external-system-links-apppresser'));
+}
 
-function tlaf_appp_esl_content_filter( $content ) {
-	$urls            = apply_filters( 'tlaf_appp_esl_allowed_urls', array( site_url() ) );
-	$applied_classes = apply_filters( 'tlaf_appp_esl_applied_classes', array( 'external', 'system' ) );
+require('vendor/autoload.php');
 
-	$dom = new DOMDocument;
-	$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+$updatePhp = new WPUpdatePhp('5.4.0');
 
-	/** @var DOMElement $node */
-	foreach ( $dom->getElementsByTagName( 'a' ) as $node ) {
-		$add_classes = true;
-		$href = $node->getAttribute( 'href' );
-
-		foreach ( $urls as $url ) {
-			if ( strstr( $href, $url ) !== false ) {
-				$add_classes = false;
-				break;
-			}
-		}
-
-		if ( ! $add_classes ) {
-			continue;
-		}
-
-		$classes = explode( ' ', $node->getAttribute( 'class' ) );
-		$classes = implode( ' ', array_unique( array_merge( $classes, $applied_classes ) ) );
-		$node->setAttribute( 'class', $classes );
-	}
-
-	return $dom->saveHTML();
+if ($updatePhp->does_it_meet_required_php_version(PHP_VERSION)) {
+    add_action('plugins_loaded', function () {
+        $instance = new \TheLookAndFeel\ExternalSystemLinksAppPresser\Plugin();
+        $instance->setup();
+    }, 20);
 }
