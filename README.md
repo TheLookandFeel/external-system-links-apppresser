@@ -4,6 +4,8 @@
 
 WordPress plugin: Filters external links in post content to give them 'external system' classes, to have AppPresser handle them as links opening in the system browser. The added classes and allowed (non-external) URLs are filterable.
 
+**Note:** This is for when AJAX / Dynamic Loading is disabled in AppPresser.
+
 Using these classes can be found in the AppPresser documentation on [In App Browser Links](http://docs.apppresser.com/article/201-in-app-browser-links). This plugin will default to opening all external links in the systems default browser.
 
 ## Available WordPress filters
